@@ -1,0 +1,109 @@
+ R1 – Beginner Weight Loss, No Equipment
+IF goal = "weight loss"
+AND level = "beginner"
+AND equipment = "none"
+THEN
+    workout_plan = "Cardio (bodyweight) 3 times/week",
+    nutrition_advice = "Caloric deficit, avoid sugary foods",
+    lifestyle_tip = "Walk 30 minutes daily"
+
+
+R2 – Intermediate Muscle Gain, Dumbbells
+IF goal = "muscle gain"
+AND level = "intermediate"
+AND equipment = "dumbbells"
+THEN
+    workout_plan = "Strength training split 4 times/week",
+    nutrition_advice = "High-protein diet",
+    lifestyle_tip = "Sleep 7–8 hours per night"
+
+
+R3 – Time-Constrained (≤ 20 min), No Equipment
+IF time_available ≤ 20
+AND equipment = "none"
+THEN
+    workout_plan = "Quick HIIT: jumping jacks, burpees, planks",
+    nutrition_advice = "Small, balanced meals",
+    lifestyle_tip = "Stretch after every workout"
+
+
+R4 – User with Knee Pain
+IF health_condition = "knee pain"
+THEN
+    workout_plan = "Low-impact upper body workouts, avoid jumping/squats",
+    nutrition_advice = "Focus on anti-inflammatory foods",
+    lifestyle_tip = "Warm up before and cool down after workouts"
+
+
+R5 – Female Age ≥ 45
+IF gender = "female"
+AND age ≥ 45
+THEN
+    workout_plan = "Low-impact resistance training",
+    nutrition_advice = "Increase calcium and iron intake",
+    lifestyle_tip = "Monitor heart health regularly"
+
+
+R6 – General Fitness, Long Duration, Resistance Band
+IF goal = "general fitness"
+AND time_available ≥ 45
+AND equipment = "resistance band"
+THEN
+    workout_plan = "Full-body resistance band workout 4 times/week",
+    nutrition_advice = "Balanced macronutrient diet",
+    lifestyle_tip = "Stay well-hydrated throughout the day"
+
+
+R7 – Weight Loss, No Progress
+IF goal = "weight loss"
+AND progress = "no change after 2 weeks"
+THEN
+    workout_plan = "Increase workout intensity or duration",
+    nutrition_advice = "Reassess calorie intake and portion control",
+    lifestyle_tip = "Track sleep and stress levels"
+
+
+R8 – Beginner General Fitness, Resistance Band
+IF goal = "general fitness"
+AND level = "beginner"
+AND equipment = "resistance band"
+THEN
+    workout_plan = "Beginner resistance band routine 3 times/week",
+    nutrition_advice = "Standard balanced diet",
+    lifestyle_tip = "Maintain consistent sleep schedule"
+
+
+R9 – Male, Muscle Gain, No Equipment
+IF gender = "male"
+AND goal = "muscle gain"
+AND equipment = "none"
+THEN
+    workout_plan = "Bodyweight strength training (push-ups, dips, squats) 4x/week",
+    nutrition_advice = "High-protein meals with calorie surplus",
+    lifestyle_tip = "Ensure progressive overload by increasing reps or sets"
+
+
+R10 – Female, Weight Loss, Dumbbells
+IF gender = "female"
+AND goal = "weight loss"
+AND equipment = "dumbbells"
+THEN
+    workout_plan = "Dumbbell HIIT routine (squats, rows, presses) 3x/week",
+    nutrition_advice = "Moderate caloric deficit, prioritize whole foods",
+    lifestyle_tip = "Avoid skipping meals, monitor hydration"
+
+
+R11 – User with Asthma
+IF health_condition = "asthma"
+THEN
+    workout_plan = "Low-to-moderate intensity workouts, indoors preferred",
+    nutrition_advice = "Avoid inflammatory foods; focus on omega-3-rich meals",
+    lifestyle_tip = "Warm up gradually and keep inhaler nearby"
+
+
+R12 – Time Available ≥ 60 Minutes
+IF time_available ≥ 60
+THEN
+    workout_plan = "Full routine: warm-up, strength, cardio, and cooldown",
+    nutrition_advice = "Meal timing to support long sessions (pre/post workout)",
+    lifestyle_tip = "Track performance and recovery weekly"

@@ -235,7 +235,7 @@ const FitnessPlan = ({ userData, onRestart }) => {
           
           <Button 
             onClick={onRestart}
-            variant="outline"
+            
             className="glass-effect border-gray-600 text-gray-300 hover:border-purple-500 px-8 py-4 rounded-2xl font-semibold"
           >
             Create New Plan

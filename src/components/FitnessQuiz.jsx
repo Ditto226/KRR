@@ -1,14 +1,14 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowUp, CheckCircle2 } from 'lucide-react';
 
 const FitnessQuiz = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     age: [25],
+    sapde: [12],
     gender: '',
     fitnessGoal: '',
     fitnessLevel: '',
@@ -20,51 +20,65 @@ const FitnessQuiz = ({ onComplete }) => {
   const steps = [
     {
       title: "What's your age?",
+      description: "This helps us tailor exercises to your age group",
       key: 'age',
       type: 'slider',
       min: 16,
       max: 80,
       step: 1,
-      unit: 'years'
+      unit: 'years',
+      icon: '🎂'
     },
     {
       title: "What's your gender?",
+      description: "This helps us create a personalized workout plan",
       key: 'gender',
       type: 'choice',
-      options: ['Male', 'Female', 'Other', 'Prefer not to say']
+      options: ['Male', 'Female', 'Other', 'Prefer not to say'],
+      icon: '👤'
     },
     {
       title: "What's your primary fitness goal?",
+      description: "Choose the main focus of your fitness journey",
       key: 'fitnessGoal',
       type: 'choice',
-      options: ['Lose Weight', 'Build Muscle', 'Improve Endurance', 'General Fitness', 'Strength Training']
+      options: ['Lose Weight', 'Build Muscle', 'Improve Endurance', 'General Fitness', 'Strength Training'],
+      icon: '🎯'
     },
     {
       title: "What's your current fitness level?",
+      description: "Be honest - this helps us start at the right intensity",
       key: 'fitnessLevel',
       type: 'choice',
-      options: ['Beginner', 'Intermediate', 'Advanced']
+      options: ['Beginner', 'Intermediate', 'Advanced'],
+      icon: '📈'
     },
     {
       title: "What equipment do you have access to?",
+      description: "We'll customize workouts based on your available equipment",
       key: 'equipment',
       type: 'choice',
-      options: ['No Equipment', 'Dumbbells', 'Resistance Bands', 'Full Gym', 'Home Gym Setup']
+      options: ['No Equipment', 'Dumbbells', 'Resistance Bands', 'Full Gym', 'Home Gym Setup'],
+      icon: '🏋️'
     },
     {
       title: "How much time can you dedicate per workout?",
+      description: "We'll create efficient workouts that fit your schedule",
       key: 'timeAvailability',
       type: 'slider',
       min: 15,
       max: 120,
       step: 15,
-      unit: 'minutes'
+      unit: 'minutes',
+      icon: '⏰'
     },
     {
       title: "Any medical conditions or injuries?",
+      description: "This helps us ensure your safety during workouts",
       key: 'medicalConditions',
       type: 'choice',
-      options: ['None', 'Back Problems', 'Knee Issues', 'Heart Condition', 'Other (please consult doctor)']
+      options: ['None', 'Back Problems', 'Knee Issues', 'Heart Condition', 'Other (please consult doctor)'],
+      icon: '❤️'
     }
   ];
 
@@ -103,32 +117,38 @@ const FitnessQuiz = ({ onComplete }) => {
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-b from-slate-900 via-gray-900 to-black">
+      <div className="w-full max-w-3xl">
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between text-sm text-gray-400 mb-2">
-            <span>Question {currentStep + 1} of {steps.length}</span>
-            <span>{Math.round(progress)}% Complete</span>
+            <span className="font-medium">Question {currentStep + 1} of {steps.length}</span>
+            <span className="font-medium">{Math.round(progress)}% Complete</span>
           </div>
-          <div className="w-full bg-gray-800 rounded-full h-2">
+          <div className="w-full bg-gray-800/50 rounded-full h-3">
             <div 
-              className="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full transition-all duration-500"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
         </div>
 
         {/* Question Card */}
-        <Card className="gradient-card p-8 rounded-3xl border-0 mb-8">
-          <h2 className="text-3xl font-bold text-center mb-8 text-white">
-            {currentStepData.title}
-          </h2>
+        <Card className="bg-gradient-to-br from-slate-800 to-gray-900 backdrop-blur-sm p-8 rounded-3xl border border-slate-700 mb-8 shadow-2xl">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="text-4xl">{steps[currentStep].icon}</div>
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-2">
+                {currentStepData.title}
+              </h2>
+              <p className="text-gray-400">{currentStepData.description}</p>
+            </div>
+          </div>
 
           {currentStepData.type === 'slider' && (
             <div className="space-y-8">
               <div className="text-center">
-                <div className="text-6xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                <div className="text-7xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
                   {formData[currentStepData.key]?.[0] || currentStepData.min}
                 </div>
                 <div className="text-gray-400 text-lg">{currentStepData.unit}</div>
@@ -157,13 +177,22 @@ const FitnessQuiz = ({ onComplete }) => {
                 <button
                   key={option}
                   onClick={() => handleChoiceSelect(option)}
-                  className={`p-4 rounded-2xl border-2 transition-all duration-300 text-left hover:scale-105 ${
+                  className={`relative p-6 rounded-2xl border-2 transition-all duration-300 text-left hover:scale-105 ${
                     formData[currentStepData.key] === option
-                      ? 'gradient-button border-purple-500 text-white'
-                      : 'glass-effect border-gray-600 text-gray-300 hover:border-purple-500'
+                      ? 'bg-gradient-to-r from-blue-600 to-cyan-600 border-blue-500 text-white shadow-lg shadow-blue-500/20'
+                      : 'bg-slate-800 border-slate-600 text-gray-300 hover:border-blue-500 hover:bg-slate-700'
                   }`}
                 >
-                  <div className="font-semibold">{option}</div>
+                  <div className="flex items-center justify-between">
+                    <div className={`font-semibold text-lg ${
+                      formData[currentStepData.key] === option ? 'text-white' : 'text-gray-300'
+                    }`}>
+                      {option}
+                    </div>
+                    {formData[currentStepData.key] === option && (
+                      <CheckCircle2 className="h-6 w-6 text-white" />
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
@@ -175,9 +204,13 @@ const FitnessQuiz = ({ onComplete }) => {
           <Button
             onClick={handlePrevious}
             disabled={currentStep === 0}
-            variant="outline"
-            className="glass-effect border-gray-600 text-gray-300 hover:border-purple-500 px-6 py-3 rounded-xl"
+            className={`px-6 py-3 rounded-xl gap-2 transition-all duration-300 ${
+              currentStep === 0 
+                ? 'bg-slate-800/50 text-gray-500 cursor-not-allowed' 
+                : 'bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white border border-slate-600 hover:border-blue-500'
+            }`}
           >
+            <ArrowUp className="h-4 w-4" />
             Previous
           </Button>
 
@@ -186,7 +219,7 @@ const FitnessQuiz = ({ onComplete }) => {
               <div
                 key={index}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index <= currentStep ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gray-600'
+                  index <= currentStep ? 'bg-gradient-to-r from-blue-500 to-cyan-500' : 'bg-slate-600'
                 }`}
               />
             ))}
@@ -195,10 +228,14 @@ const FitnessQuiz = ({ onComplete }) => {
           <Button
             onClick={handleNext}
             disabled={!isStepComplete()}
-            className="gradient-button px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300"
+            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 gap-2 ${
+              !isStepComplete()
+                ? 'bg-slate-800/50 text-gray-500 cursor-not-allowed'
+                : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white hover:scale-105'
+            }`}
           >
             {currentStep === steps.length - 1 ? 'Generate Plan' : 'Next'}
-            <ArrowDown className="ml-2 h-4 w-4 rotate-[-90deg]" />
+            <ArrowDown className="h-4 w-4 rotate-[-90deg]" />
           </Button>
         </div>
       </div>

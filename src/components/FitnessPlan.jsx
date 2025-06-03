@@ -1,7 +1,6 @@
-
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Calendar, Clock, Heart, Running, Download } from 'lucide-react';
+import { Calendar, Clock, Heart, ArrowUp, Download } from 'lucide-react';
 
 const FitnessPlan = ({ userData, onRestart }) => {
   const generatePlan = (data) => {
@@ -130,7 +129,7 @@ const FitnessPlan = ({ userData, onRestart }) => {
           <Card className="gradient-card p-8 rounded-3xl border-0 h-fit">
             <div className="flex items-center space-x-3 mb-6">
               <div className="bg-purple-600 p-3 rounded-xl">
-                <Running className="h-6 w-6 text-white" />
+                <ArrowUp className="h-6 w-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-white">Workout Plan</h2>
             </div>

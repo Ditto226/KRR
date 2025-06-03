@@ -8,7 +8,6 @@ const FitnessQuiz = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     age: [25],
-    sapde: [12],
     gender: '',
     fitnessGoal: '',
     fitnessLevel: '',

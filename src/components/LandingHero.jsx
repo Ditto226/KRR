@@ -1,5 +1,5 @@
 
-import { ArrowDown, Running, Heart, Calendar } from 'lucide-react';
+import { ArrowDown, ArrowUp, Heart, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const LandingHero = ({ onStartQuiz }) => {
@@ -12,7 +12,7 @@ const LandingHero = ({ onStartQuiz }) => {
       <div className="text-center z-10 max-w-4xl mx-auto">
         <div className="mb-8 flex justify-center space-x-4">
           <div className="gradient-card p-4 rounded-2xl animate-bounce">
-            <Running className="h-8 w-8 text-purple-400" />
+            <ArrowUp className="h-8 w-8 text-purple-400" />
           </div>
           <div className="gradient-card p-4 rounded-2xl animate-bounce delay-100">
             <Heart className="h-8 w-8 text-pink-400" />

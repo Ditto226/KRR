@@ -1,109 +1,132 @@
- R1 – Beginner Weight Loss, No Equipment
+R1 – Beginner, Weight Loss, Time-Constrained (< 30 min)
 IF goal = "weight loss"
-AND level = "beginner"
+AND fitness_level = "beginner"
+AND time_available ≤ 30
 AND equipment = "none"
 THEN
-    workout_plan = "Cardio (bodyweight) 3 times/week",
-    nutrition_advice = "Caloric deficit, avoid sugary foods",
-    lifestyle_tip = "Walk 30 minutes daily"
+    workout_plan = "Bodyweight cardio/HIIT: squats, push-ups, planks (3–4x/week)",
+    nutrition_advice = "Caloric deficit, quick balanced meals",
+    lifestyle_tip = "Stretch daily, avoid skipping meals, keep moving throughout the day"
 
 
-R2 – Intermediate Muscle Gain, Dumbbells
+R2 – Moderate Time & Equipment Available
+IF time_available ≥ 45
+AND equipment ≠ "none"
+AND fitness_level ≠ "advanced"
+THEN
+    workout_plan = "Full-body strength + cardio split 4–5x/week using resistance tools",
+    nutrition_advice = "Balanced macronutrients, meal timing for workout support",
+    lifestyle_tip = "Stretch post-workout, track weekly fitness and diet goals"
+
+
+R3 – Muscle Gain, Intermediate/Advanced, Gym or Home
 IF goal = "muscle gain"
-AND level = "intermediate"
-AND equipment = "dumbbells"
+AND fitness_level IN ["intermediate", "advanced"]
+AND time_available ≥ 45
 THEN
-    workout_plan = "Strength training split 4 times/week",
-    nutrition_advice = "High-protein diet",
-    lifestyle_tip = "Sleep 7–8 hours per night"
+    workout_plan = "Strength split training (push/pull/legs), 5–6x/week with heavy lifts",
+    nutrition_advice = "Calorie surplus, high-protein intake, include pre/post workout nutrition",
+    lifestyle_tip = "Monitor recovery, sleep ≥ 7 hours, track volume/progression"
 
 
-R3 – Time-Constrained (≤ 20 min), No Equipment
-IF time_available ≤ 20
-AND equipment = "none"
+R4 – Joint Pain
+IF health_condition = "joint pain"
 THEN
-    workout_plan = "Quick HIIT: jumping jacks, burpees, planks",
-    nutrition_advice = "Small, balanced meals",
-    lifestyle_tip = "Stretch after every workout"
+    workout_plan = "Low-impact training (e.g., cycling, resistance bands), avoid jumping/squats",
+    nutrition_advice = "Anti-inflammatory diet: omega-3, turmeric, leafy greens",
+    lifestyle_tip = "Use supportive shoes/mats, warm up thoroughly, avoid high impact"
 
 
-R4 – User with Knee Pain
-IF health_condition = "knee pain"
+R5 – Asthma
+IF health_condition = "asthma"
 THEN
-    workout_plan = "Low-impact upper body workouts, avoid jumping/squats",
-    nutrition_advice = "Focus on anti-inflammatory foods",
-    lifestyle_tip = "Warm up before and cool down after workouts"
+    workout_plan = "Indoor low-moderate intensity workouts (e.g., elliptical, resistance bands)",
+    nutrition_advice = "Avoid inflammatory foods, increase omega-3 intake",
+    lifestyle_tip = "Have inhaler nearby, gradually warm up, avoid dusty environments"
 
 
-R5 – Female Age ≥ 45
+R6 – Female Age ≥ 45
 IF gender = "female"
 AND age ≥ 45
 THEN
-    workout_plan = "Low-impact resistance training",
-    nutrition_advice = "Increase calcium and iron intake",
-    lifestyle_tip = "Monitor heart health regularly"
+    workout_plan = "Resistance-based training 3x/week, low-impact cardio (e.g., walking)",
+    nutrition_advice = "High calcium, vitamin D, and iron intake",
+    lifestyle_tip = "Stretch regularly, monitor bone health, avoid overtraining"
 
 
-R6 – General Fitness, Long Duration, Resistance Band
+R7 – Sedentary Lifestyle / Office Worker
+IF occupation = "desk job"
+THEN
+    workout_plan = "Daily 20–30 minute bodyweight or resistance band workouts",
+    nutrition_advice = "Avoid constant snacking, eat on schedule",
+    lifestyle_tip = "Take breaks every 30 minutes to stretch or stand"
+
+
+R8 – Pregnancy
+IF health_condition = "pregnant"
+AND fitness_level = "beginner"
+THEN
+    workout_plan = "Prenatal yoga, walking, and light resistance 3–4x/week",
+    nutrition_advice = "Folic acid, iron, hydration-focused diet",
+    lifestyle_tip = "Avoid lying flat after 1st trimester, consult doctor regularly"
+
+
+R9 – Senior User (Age ≥ 60)
+IF age ≥ 60
+THEN
+    workout_plan = "Low-impact strength and mobility 2–3x/week (chair squats, band rows)",
+    nutrition_advice = "High-protein, calcium-rich meals with fiber",
+    lifestyle_tip = "Monitor balance, stay active daily, walk often"
+
+
+R10 – Obesity (BMI ≥ 30)
+IF BMI ≥ 30
+AND goal = "weight loss"
+THEN
+    workout_plan = "Low-impact cardio (e.g., walking, pool exercises) 5x/week",
+    nutrition_advice = "Structured caloric deficit, whole-foods diet",
+    lifestyle_tip = "Avoid long sitting periods, sleep well, log meals and workouts"
+
+
+R11 – Underweight (BMI < 18.5)
+IF BMI < 18.5
+AND goal = "weight gain"
+THEN
+    workout_plan = "Resistance training (bodyweight/dumbbells) 3x/week",
+    nutrition_advice = "High-calorie, nutrient-dense diet with healthy fats",
+    lifestyle_tip = "Eat frequently, add snacks, track gradual weight gain"
+
+
+R12 – Female with PCOS
+IF gender = "female"
+AND health_condition = "PCOS"
+THEN
+    workout_plan = "Strength + cardio blend (moderate intensity), 4–5x/week",
+    nutrition_advice = "Low-GI carbs, avoid sugar spikes, increase fiber",
+    lifestyle_tip = "Avoid overtraining, sleep well, manage stress"
+
+
+R13 – Home User, General Fitness
 IF goal = "general fitness"
-AND time_available ≥ 45
-AND equipment = "resistance band"
-THEN
-    workout_plan = "Full-body resistance band workout 4 times/week",
-    nutrition_advice = "Balanced macronutrient diet",
-    lifestyle_tip = "Stay well-hydrated throughout the day"
-
-
-R7 – Weight Loss, No Progress
-IF goal = "weight loss"
-AND progress = "no change after 2 weeks"
-THEN
-    workout_plan = "Increase workout intensity or duration",
-    nutrition_advice = "Reassess calorie intake and portion control",
-    lifestyle_tip = "Track sleep and stress levels"
-
-
-R8 – Beginner General Fitness, Resistance Band
-IF goal = "general fitness"
-AND level = "beginner"
-AND equipment = "resistance band"
-THEN
-    workout_plan = "Beginner resistance band routine 3 times/week",
-    nutrition_advice = "Standard balanced diet",
-    lifestyle_tip = "Maintain consistent sleep schedule"
-
-
-R9 – Male, Muscle Gain, No Equipment
-IF gender = "male"
-AND goal = "muscle gain"
 AND equipment = "none"
 THEN
-    workout_plan = "Bodyweight strength training (push-ups, dips, squats) 4x/week",
-    nutrition_advice = "High-protein meals with calorie surplus",
-    lifestyle_tip = "Ensure progressive overload by increasing reps or sets"
+    workout_plan = "Bodyweight routine: squats, push-ups, planks 3–5x/week",
+    nutrition_advice = "Balanced macro intake, portion control",
+    lifestyle_tip = "Walk daily, stay hydrated, stretch post-workout"
 
 
-R10 – Female, Weight Loss, Dumbbells
-IF gender = "female"
-AND goal = "weight loss"
-AND equipment = "dumbbells"
+R14 – Resistance Band User
+IF equipment = "resistance band"
+AND goal IN ["weight loss", "muscle gain", "general fitness"]
 THEN
-    workout_plan = "Dumbbell HIIT routine (squats, rows, presses) 3x/week",
-    nutrition_advice = "Moderate caloric deficit, prioritize whole foods",
-    lifestyle_tip = "Avoid skipping meals, monitor hydration"
+    workout_plan = "Resistance band full-body circuit 4x/week",
+    nutrition_advice = "Protein-rich balanced meals",
+    lifestyle_tip = "Vary intensity weekly, maintain good form"
 
 
-R11 – User with Asthma
-IF health_condition = "asthma"
+R15 – No Progress After 2 Weeks
+IF progress = "no change after 2 weeks"
 THEN
-    workout_plan = "Low-to-moderate intensity workouts, indoors preferred",
-    nutrition_advice = "Avoid inflammatory foods; focus on omega-3-rich meals",
-    lifestyle_tip = "Warm up gradually and keep inhaler nearby"
-
-
-R12 – Time Available ≥ 60 Minutes
-IF time_available ≥ 60
-THEN
-    workout_plan = "Full routine: warm-up, strength, cardio, and cooldown",
-    nutrition_advice = "Meal timing to support long sessions (pre/post workout)",
-    lifestyle_tip = "Track performance and recovery weekly"
+    workout_plan = "Increase training frequency or intensity",
+    nutrition_advice = "Reevaluate calorie intake, reduce hidden sugar",
+    lifestyle_tip = "Improve sleep, track meals, adjust goals"
